@@ -27,11 +27,12 @@ class QuestionManager() : IQuestionnaire {
     }
 
     override fun showResult(selectedAnswers: Map<String, String>): Result {
-        val correctAnswers = evaluateSelections(selectedAnswers)
+        setAnswers(selectedAnswers)
+        val correctAnswers = answerHandler.evaluateAnswers(questions)
         return resultBuilder.buildResult(questions, correctAnswers)
     }
 
-   private fun evaluateSelections(selectedAnswers: Map<String, String>): Int {
+    private fun setAnswers(selectedAnswers: Map<String, String>) {
         for ((question, answer) in selectedAnswers) {
             try {
                 val q = questionFinder.findQuestion(questions, question)
@@ -40,6 +41,5 @@ class QuestionManager() : IQuestionnaire {
                 println(ex.message)
             }
         }
-        return answerHandler.evaluateAnswers(questions)
     }
 }
