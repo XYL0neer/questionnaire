@@ -1,5 +1,4 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
-import androidx.compose.material.MaterialTheme
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,13 +7,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.outlined.Check
-import androidx.compose.material.icons.outlined.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -31,7 +29,6 @@ import androidx.compose.ui.window.application
 import control.QuestionManager
 import model.Question
 import model.Result
-import java.util.Collections.addAll
 
 fun percentageString(numerator: Int, denominator: Int) = ((numerator / denominator) * 100).toString() + "%"
 
@@ -46,7 +43,13 @@ fun App() {
 
     MaterialTheme {
         Column {
-            if (result != null) Text("${result.correctAnswers} out of ${result.totalQuestions} questions answered correctly (${percentageString(result.correctAnswers, result.totalQuestions)})",modifier = Modifier.padding(bottom = 16.dp))
+            if (result != null) Text(
+                "${result.correctAnswers} out of ${result.totalQuestions} questions answered correctly (${
+                    percentageString(
+                        result.correctAnswers, result.totalQuestions
+                    )
+                })", modifier = Modifier.padding(bottom = 16.dp)
+            )
             questions.map { q ->
                 Text(q.question)
                 q.answers.map { answer ->
@@ -61,17 +64,13 @@ fun App() {
                         Text(
                             text = answer,
                             style = MaterialTheme.typography.body1.merge(),
-                            modifier = Modifier.padding(start = 16.dp)
+                            modifier = Modifier.padding(start = 16.dp, end = 16.dp)
                         )
                         if (q.selectedAnswer == answer && q.selectedAnswer != q.correctAnswer) Icon(
-                            Icons.Filled.Close,
-                            contentDescription = "Wrong answer",
-                            tint = Color.Red
+                            Icons.Filled.Close, contentDescription = "Wrong answer", tint = Color.Red
                         )
                         if (q.selectedAnswer == answer && q.selectedAnswer == q.correctAnswer) Icon(
-                            Icons.Filled.Check,
-                            contentDescription = "Correct answer",
-                            tint = Color.Green
+                            Icons.Filled.Check, contentDescription = "Correct answer", tint = Color.Green
                         )
                     }
                 }

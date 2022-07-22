@@ -28,5 +28,4 @@ class QuestionFinderTest {
             sut.findQuestion(questions, questionToFind)
         }
     }
-
 }

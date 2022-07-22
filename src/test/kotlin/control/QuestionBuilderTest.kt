@@ -40,6 +40,4 @@ class QuestionBuilderTest {
 
         assertEquals(listOf("Ant", "Bee", "Cat"), answers)
     }
-
-
 }

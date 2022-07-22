@@ -31,7 +31,7 @@ class QuestionManager() : IQuestionnaire {
         return resultBuilder.buildResult(questions, correctAnswers)
     }
 
-    fun evaluateSelections(selectedAnswers: Map<String, String>): Int {
+   private fun evaluateSelections(selectedAnswers: Map<String, String>): Int {
         for ((question, answer) in selectedAnswers) {
             try {
                 val q = questionFinder.findQuestion(questions, question)

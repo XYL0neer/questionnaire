@@ -23,7 +23,7 @@ class QuestionBuilder {
         for (i in questionIndexes.indices) {
             var questionEndIndex = lines.size
             try {
-                questionEndIndex = questionIndexes[i+1]
+                questionEndIndex = questionIndexes[i + 1]
             } catch (ex: java.lang.IndexOutOfBoundsException) {
                 println("out of bounds but catched")
             }
@@ -48,5 +48,4 @@ class QuestionBuilder {
             answers[i] = answers[i].removePrefix("*")
         }
     }
-
 }
