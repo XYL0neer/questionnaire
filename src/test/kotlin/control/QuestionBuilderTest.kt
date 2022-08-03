@@ -36,7 +36,7 @@ class QuestionBuilderTest {
     @Test
     fun `removeAnswerPrefix removeCorrectAnswerPrefix`() {
         val answers = lines.subList(1, 4).toMutableList()
-        sut.removeAnswerPrefix(answers)
+        sut.removeAnswerPrefixInAnswersOptions(answers)
 
         assertEquals(listOf("Ant", "Bee", "Cat"), answers)
     }

@@ -1,5 +1,6 @@
 package provider
 
+import exceptions.FileException
 import java.io.FileNotFoundException
 import java.io.FileReader
 
@@ -11,7 +12,7 @@ class FileProvider {
             FileReader(FILENAME).readLines()
         } catch (ex: FileNotFoundException) {
             println(ex.message)
-            emptyList()
+            throw FileException("File $FILENAME not found")
         }
     }
 }
